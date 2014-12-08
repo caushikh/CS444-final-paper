@@ -13,6 +13,9 @@
 \usepackage{hyperref}
 \usepackage[vertfit]{breakurl}
 
+\usepackage{ragged2e}
+\edef\UrlBreaks{\do\-\UrlBreaks}
+
 \usepackage{balance}
 \usepackage[TABBOTCAP, tight]{subfigure}
 \usepackage{enumitem}
@@ -39,12 +42,16 @@
   colorlinks = true,
   linkcolor = black,
   urlcolor = black,
+  citecolor = black,
+  urlbordercolor = black,
+  runbordercolor = black,
   pdfauthor = {\name},
   pdfkeywords = {CS444 ``Operating Systems II'' Final Paper},
   pdftitle = {CS 444 Final Paper},
   pdfsubject = {CS 444 Final Paper},
   pdfpagemode = UseNone
 }
+\urlstyle{same}
 
 \title{Operating System Feature Comparison}
 \date{December 11, 2014}
@@ -75,6 +82,7 @@
 %this file only exists at compile time. Feel free to change that.
 %\input{__mt19937ar.c.tex}
 \nocite{*}
+\RaggedRight
 \bibliographystyle{plain-annote}
 \bibliography{CS444_final_paper}
 \end{document}

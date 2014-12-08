@@ -6,22 +6,22 @@ default: pdf
 
 both: pdf html
 
-dvi: ${TARGET}.tex 
+pdf: ${TARGET}.tex 
 #	pygmentize the input source file -- THIS NAME SHOULD BE SAFE
 	pygmentize -f latex -o __${SRC}.tex ${SRC}
 #	run latex twice to get references correct
-	latex ${TARGET}.tex
+	pdflatex ${TARGET}.tex
 #	you can also have a bibtex line here
 	bibtex $(TARGET)
-	latex $(TARGET).tex
+	pdflatex $(TARGET).tex
 #	remove the pygmentized output to avoid cluttering up the directory
 	rm __${SRC}.tex
 
-ps: dvi
-	dvips -R -Poutline -t letter ${TARGET}.dvi -o ${TARGET}.ps
+#ps: dvi
+#	dvips -R -Poutline -t letter ${TARGET}.dvi -o ${TARGET}.ps
 
-pdf: ps
-	ps2pdf ${TARGET}.ps
+#pdf: ps
+#	ps2pdf ${TARGET}.ps
 
 
 html:
@@ -35,4 +35,4 @@ html:
 	rm -rf ${HTML}
 
 clean:
-	rm -f $(TARGET).{pdf,aux,log,out,toc,dvi,ps}
+	rm -f $(TARGET).{pdf,aux,log,out,toc,dvi,ps,blg,bgg,bbl}
