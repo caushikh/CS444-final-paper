@@ -12,10 +12,10 @@ dvi: ${TARGET}.tex
 #	run latex twice to get references correct
 	latex ${TARGET}.tex
 #	you can also have a bibtex line here
-#	bibtex $(TARGET).tex
+	bibtex $(TARGET)
 	latex $(TARGET).tex
 #	remove the pygmentized output to avoid cluttering up the directory
-#	rm __${SRC}.tex
+	rm __${SRC}.tex
 
 ps: dvi
 	dvips -R -Poutline -t letter ${TARGET}.dvi -o ${TARGET}.ps
@@ -36,4 +36,3 @@ html:
 
 clean:
 	rm -f $(TARGET).{pdf,aux,log,out,toc,dvi,ps}
-	rm -f __$(SRC).tex
