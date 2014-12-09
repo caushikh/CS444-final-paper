@@ -137,6 +137,12 @@ is more lightweight.
 \section{Memory Management}
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
+\\
+Both Windows and Linux support copy-on-write paging. When an attempt is made
+to modify pages that start out originally as read-only pages, the memory 
+manager makes a private writable copy of the page and updates the page table 
+to reference the new private page. The new page will then be paged out rather
+than the original page.
 \subsection{Differences}
 In Windows, all user processes share the kernel's virtual memory. This is only 
 accessible when running in kernel mode, but eliminates the need to change the
