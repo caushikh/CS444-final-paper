@@ -68,7 +68,18 @@
 
 \section{Processes and Threads}
 \subsection{Similarities}
+The information contained in the process containers for both Linux and Windows
+are very similar. Specifically, all processes contain a private virtual 
+address space, program code, sets of resources like opened files and signals,
+and multiple threads of execution. 
 \subsection{Differences}
+One fundamental difference between Linux and Windows is in process creation. 
+In Linux, new processes are created by invoking two different system calls:
+fork(), to create a duplicate of the current process, and exec(), to load an
+executable file into the new process's address space and then execute it. 
+In Windows, a call to one of the process creation functions like CreateProcess
+loads an executable image file, or an .exe file, and creates the Windows
+executive process object all in one. 
 \subsection{Why Similarities and Differences Exist?}
 \section{Memory Management}
 \subsection{Similarities}
