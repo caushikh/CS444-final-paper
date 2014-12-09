@@ -72,6 +72,10 @@ The information contained in the process containers for both Linux and Windows
 are very similar. Specifically, all processes contain a private virtual 
 address space, program code, sets of resources like opened files and signals,
 and multiple threads of execution. 
+
+Both Linux and Windows implement user mode and kernel mode. In both operating
+systems, a thread can invoke a system call that causes the kernel to execute
+kernel code on behalf of the thread.
 \subsection{Differences}
 One fundamental difference between Linux and Windows is in process creation. 
 In Linux, new processes are created by invoking two different system calls:
@@ -87,6 +91,17 @@ standard processes and simply share resources with other processes or threads.
 In Windows, processes contain one or more threads and only those threads are
 schedulable by the scheduler. Windows dedicates a special data structure to 
 threads called the executive thread block. 
+
+In Linux, processes are schedulable and have schedulable states like running,
+zombie, and interruptiple. In Windows only threads have schedulable states and
+processes are not schedulable. Processes in Windows only exist to serve as a
+container for resources while in Linux, processes do that as well as execute 
+code.
+
+Windows also contains entities called jobs and fibers that are not supported 
+by Linux. Jobs are collections of processes that can be managed as a unit.
+Fibers are essentially threads that are scheduled in user space instead of
+by the kernel's scheduling algorithm. 
 \subsection{Why Similarities and Differences Exist?}
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
