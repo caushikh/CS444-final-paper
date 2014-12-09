@@ -1,6 +1,6 @@
 TARGET=CS444_final_paper
 HTML=main_html
-SRC=mt19937ar.c
+SRC=execeg.c
 
 default: pdf
 

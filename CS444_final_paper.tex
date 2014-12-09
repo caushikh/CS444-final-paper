@@ -83,7 +83,13 @@ fork(), to create a duplicate of the current process, and exec(), to load an
 executable file into the new process's address space and then execute it. 
 In Windows, a call to one of the process creation functions like CreateProcess
 loads an executable image file, or an .exe file, and creates the Windows
-executive process object all in one. 
+executive process object all in one.
+
+The following is a short snippet of code demonstrating the use of fork() and
+then the call to execv() to create the new process with the new executable
+file image in Linux.
+
+\input{__execeg.c.tex}
 
 A significant difference between Windows and Linux is the implementation of 
 threads. In Linux, threads are implemented as task\_structs just like 
@@ -102,6 +108,11 @@ Windows also contains entities called jobs and fibers that are not supported
 by Linux. Jobs are collections of processes that can be managed as a unit.
 Fibers are essentially threads that are scheduled in user space instead of
 by the kernel's scheduling algorithm. 
+
+Threads in Windows are not meant to own any resources. Therefore, any object
+that one thread creates belongs to its process and is therefore accessible to 
+any of the other threads in that process. In Linux, the threads are represented
+as standard processes and can thus own their own resources. 
 \subsection{Why Similarities and Differences Exist?}
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
