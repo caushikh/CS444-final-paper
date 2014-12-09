@@ -1,7 +1,7 @@
 TARGET=CS444_final_paper
 HTML=main_html
 SRC=execeg.c
-
+WINPROC=wincreateproc.c
 default: pdf
 
 both: pdf html
@@ -9,6 +9,7 @@ both: pdf html
 pdf: ${TARGET}.tex 
 #	pygmentize the input source file -- THIS NAME SHOULD BE SAFE
 	pygmentize -f latex -o __${SRC}.tex ${SRC}
+	pygmentize -f latex -o __${WINPROC}.tex ${WINPROC}
 #	run latex twice to get references correct
 	pdflatex ${TARGET}.tex
 #	you can also have a bibtex line here
@@ -16,6 +17,7 @@ pdf: ${TARGET}.tex
 	pdflatex $(TARGET).tex
 #	remove the pygmentized output to avoid cluttering up the directory
 	rm __${SRC}.tex
+	rm __${WINPROC}.tex
 
 #ps: dvi
 #	dvips -R -Poutline -t letter ${TARGET}.dvi -o ${TARGET}.ps

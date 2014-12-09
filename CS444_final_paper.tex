@@ -91,6 +91,12 @@ file image in Linux.
 
 \input{__execeg.c.tex}
 
+Here is an example of the CreateProcess function in Windows. Notice that the
+name of the module to be executed is an argument to the function whereas in
+Linux, a separate exec call had to be made.
+
+\input{__wincreateproc.c.tex}
+
 A significant difference between Windows and Linux is the implementation of 
 threads. In Linux, threads are implemented as task\_structs just like 
 standard processes and simply share resources with other processes or threads.
