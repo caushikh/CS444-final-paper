@@ -80,7 +80,18 @@ executable file into the new process's address space and then execute it.
 In Windows, a call to one of the process creation functions like CreateProcess
 loads an executable image file, or an .exe file, and creates the Windows
 executive process object all in one. 
+
+A significant difference between Windows and Linux is the implementation of 
+threads. In Linux, threads are implemented as task\_structs just like 
+standard processes and simply share resources with other processes or threads.
+In Windows, processes contain one or more threads and only those threads are
+schedulable by the scheduler. Windows dedicates a special data structure to 
+threads called the executive thread block. 
 \subsection{Why Similarities and Differences Exist?}
+The implementation of threads in Linux is based on providing a mechanism to 
+share resources between processes while in Windows, threads exist to provide
+quicker execution. Thus they are represented by a separate data structure that 
+is more lightweight.
 \section{Memory Management}
 \subsection{Similarities}
 \subsection{Differences}
