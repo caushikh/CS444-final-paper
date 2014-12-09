@@ -20,5 +20,5 @@ int main() {
 		printf("I am the parent process.\n");
 	}
 	wait();
-	return 1;
+	return 0;
 }
