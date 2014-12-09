@@ -136,8 +136,22 @@ is more lightweight.
 
 \section{Memory Management}
 \subsection{Similarities}
+In both Linux and Windows, every process has its own virtual address space.
 \subsection{Differences}
+In Windows, all user processes share the kernel's virtual memory. This is only 
+accessible when running in kernel mode, but eliminates the need to change the
+memory map when a system call is made. This is a trade-off between less private
+address space per process and faster system calls. Linux performs a 
+context-switch whenever a system call from user space traps into the kernel. 
+\\
+A consequence of this is that Windows threads can trap into the kernel and 
+access other address spaces and then switch back to the original address space
+before returning to user mode.
 \subsection{Why Similarities and Differences Exist?}
+Windows makes the kernel's virtual memory part of every process's virtual 
+memory so that kernel code can run in kernel mode without having to perform a 
+context switch. Less of a process's virtual memory is private, but it is able
+to run system calls much faster. 
 \section{I/O}
 \subsection{Similarities}
 \subsection{Differences}
