@@ -206,6 +206,12 @@ Hibernation, or suspending to disk, is supported by both Linux and Windows.
 It involves saving the computer's state to the disk and then powering down to
 save power. Windows performs a number of optimizations like compression of 
 memory pages and ignoring unmodified pages backed by disk.
+\\
+\linebreak
+Both Windows and Linux support dynamically loadable modules. In Windows, these
+modules are called dynamically linked libraries, or DLL's. In Linux, the 
+modules are called shared objects or .so files. They allow for functions and 
+data to be linked at runtime. 
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
@@ -213,7 +219,22 @@ devices and installation of device drivers. It sends requests to a number of
 different buses like PCI, USB, and SATA to register its devices. Hardware 
 resources are then allocated for the device. This allows for support many more
 devices than Linux.
+\\
+\linebreak
+DLL's and .so files are very different in the way that they link dynamic 
+modules. When .so files are linked to a program, the references to all the 
+module's functions and data are updated to point to the actual locations in 
+memory where they are placed. DLL's use a look-up table to map references to 
+the module's functions and data.
 \subsection{Why Similarities and Differences Exist?}
+Windows supports a complex plug and play I/O subsystem to support a large 
+range of devices and to simplify device driver installation for the user. 
+Linux does not provide this kind of plug and play subsystem because it is 
+designed for skilled programmers who can install or even write their own 
+drivers for devices. They need a simple, elegant interface to write their 
+drivers and load them. Not as many devices are supported, but the understanding
+is that Linux programmers would be able to install the device drivers on their
+own.
 %input the pygmentized output of mt19937ar.c, using a (hopefully) unique name
 %this file only exists at compile time. Feel free to change that.
 %\input{__mt19937ar.c.tex}
