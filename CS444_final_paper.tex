@@ -180,7 +180,14 @@ context switch. Less of a process's virtual memory is private, but it is able
 to run system calls much faster. 
 \section{I/O}
 \subsection{Similarities}
+Both Windows and Linux offer a number of similar system calls for I/O like 
+open, read, write, ioctl, and close. 
 \subsection{Differences}
+Windows offers support for a plug and play I/O subsystem while Linux does not.
+The plug-and-play is a feature that provides automatic identification of 
+devices and installation of device drivers. It sends requests to a number of
+different buses like PCI, USB, and SATA to register its devices. Hardware 
+resources are then allocated for the device.
 \subsection{Why Similarities and Differences Exist?}
 %input the pygmentized output of mt19937ar.c, using a (hopefully) unique name
 %this file only exists at compile time. Feel free to change that.
