@@ -162,6 +162,10 @@ mapped files that multiple processes can open in their virtual address space.
 On the contrary, in Linux one process must allocate a shared memory segment and
 then one or more other processes attach it to their address space.
 \\
+Windows and Linux processes have different amounts of their virtual address
+space dedicated to kernel virtual memory. Windows dedicates 2 GB of each 4 GB
+process address space for kernel virtual memory. Linux dedicates 1 GB of each
+4 GB process address space for kernel virtual memory.
 \subsection{Why Similarities and Differences Exist?}
 Windows makes the kernel's virtual memory part of every process's virtual 
 memory so that kernel code can run in kernel mode without having to perform a 
