@@ -182,6 +182,17 @@ to run system calls much faster.
 \subsection{Similarities}
 Both Windows and Linux offer a number of similar system calls for I/O like 
 open, read, write, ioctl, and close. 
+\\
+\linebreak
+Both Windows and Linux provide support for asynchronous I/O. It is a method of
+allowing a process to continue execution after it submits an I/O request to 
+not block until data becomes available. Linux provides this functionality 
+through its AIO system calls like io\_setup, io\_destroy, io\_submit,
+io\_cancel, and io\_getevents. Windows provides this functionality in a number
+of ways and offers a number of options to implement it. Examples include 
+creating an event object when making an I/O call and waiting it at a later 
+point in time, and specifying a queue to which a completion event will be 
+added by the I/O manager.
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
