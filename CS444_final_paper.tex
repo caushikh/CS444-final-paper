@@ -71,12 +71,17 @@
 The information contained in the process containers for both Linux and Windows
 are very similar. Specifically, all processes contain a private virtual 
 address space, program code, sets of resources like opened files and signals,
-and multiple threads of execution. 
+and multiple threads of execution. The process descriptors contain references
+to machine registers, CPU time accounting, kertnel stacks, and file-descriptor
+tables to locate system calls. 
 \\
 \linebreak
 Both Linux and Windows implement user mode and kernel mode. In both operating
 systems, a thread can invoke a system call that causes the kernel to execute
-kernel code on behalf of the thread.
+kernel code on behalf of the thread. The thread contains a separate kernel 
+mode stack and kernel mode program counter for execution in kernel mode. These
+are saved and restarted when switching from kernel mode to user mode and vice
+versa.
 \\
 \linebreak
 Both Linux and Windows provide support for background processes. In Windows,
