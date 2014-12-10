@@ -138,6 +138,7 @@ is more lightweight.
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
 \\
+\linebreak
 Both Windows and Linux support copy-on-write paging. When an attempt is made
 to modify pages that start out originally as read-only pages, the memory 
 manager makes a private writable copy of the page and updates the page table 
@@ -150,9 +151,17 @@ memory map when a system call is made. This is a trade-off between less private
 address space per process and faster system calls. Linux performs a 
 context-switch whenever a system call from user space traps into the kernel. 
 \\
+\linebreak
 A consequence of this is that Windows threads can trap into the kernel and 
 access other address spaces and then switch back to the original address space
 before returning to user mode.
+\\
+\linebreak
+Windows provides support for shared memory objects directly by memory 
+mapped files that multiple processes can open in their virtual address space.
+On the contrary, in Linux one process must allocate a shared memory segment and
+then one or more other processes attach it to their address space.
+\\
 \subsection{Why Similarities and Differences Exist?}
 Windows makes the kernel's virtual memory part of every process's virtual 
 memory so that kernel code can run in kernel mode without having to perform a 
