@@ -193,6 +193,12 @@ of ways and offers a number of options to implement it. Examples include
 creating an event object when making an I/O call and waiting it at a later 
 point in time, and specifying a queue to which a completion event will be 
 added by the I/O manager.
+\\
+\linebreak
+Both operating systems provide support for stacked device drivers. In Linux
+they are called stacked modules. The idea is that drivers share certain 
+functionalities and that multiple other drivers can be executed before 
+executing the core functionality of a particular driver.
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
