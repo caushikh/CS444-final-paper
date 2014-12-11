@@ -166,9 +166,16 @@ In Linux, processes are schedulable and have schedulable states like running,
 zombie, and interruptiple. In Windows only threads have schedulable states and
 processes are not schedulable. Processes in Windows only exist to serve as a
 container for resources while in Linux, processes do that as well as execute 
-code.
+code. In Windows, these states are ready, standby, running, waiting, 
+transition, terminated, and initialized. The ready state is for threads 
+that are waiting to execute. The running and standby states are for threads
+that are executing and are selected next to run. The wait state is for 
+threads that have been preempted for specific reasons. The transition state 
+are for threads that are ready for execution but whose kernel stack has been
+swapped out to disk. Threads in the terminated state are done executing
+and the initialized state signifies that a thread has just been created. 
 \\
-
+\linebreak
 Windows also contains entities called jobs and fibers that are not supported 
 by Linux. Jobs are collections of processes that can be managed as a unit.
 Fibers are essentially threads that are scheduled in user space instead of
