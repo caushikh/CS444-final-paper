@@ -179,7 +179,12 @@ and the initialized state signifies that a thread has just been created.
 Windows also contains entities called jobs and fibers that are not supported 
 by Linux. Jobs are collections of processes that can be managed as a unit.
 Fibers are essentially threads that are scheduled in user space instead of
-by the kernel's scheduling algorithm. 
+by the kernel's scheduling algorithm. A Windows process can belong to only
+one job object. A job object can specify the CPU time allocated to threads
+belonging to a set of processes. Job objects are created and opened with the
+API CreateJobObject and OpenJobObject. Fibers are switched with much less
+overhead than switching between threads. It avoids the need to enter and 
+exit the kernel.
 
 \subsection{Why Similarities and Differences Exist?}
 The process address space is present and is similar in both Windows and Linux
