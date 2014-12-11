@@ -403,21 +403,32 @@ to avoid a full system boot when exiting its sleep state.
 Both Windows and Linux support dynamically loadable modules. In Windows, these
 modules are called dynamically linked libraries, or DLL's. In Linux, the 
 modules are called shared objects or .so files. They allow for functions and 
-data to be linked at runtime. 
+data to be linked at runtime. Export drivers are kernel mode DLLs that 
+provide routines that other drivers can call. They are not standard drivers
+as they are not part of the driver stack and do not receive I/O request 
+packets.
 \\
 \linebreak
 Both Windows and Linux have a uniform device access interface for their 
 device drivers. In Windows, this is called the Windows Driver Model (WDM) 
 that all device drivers must conform to. This exists so that application 
 programs can access devices in a uniform way without having to worry about
-the details of the device implementation. 
+the details of the device implementation. All WDM drivers have to support 
+plug and play and support power management. Windows also requires that 
+WDM drivers to potentially be used in device driver stacks by creating 
+device objects. They are written with the Windows Driver Kit (WDK).
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
 devices and installation of device drivers. It sends requests to a number of
 different buses like PCI, USB, and SATA to register its devices. Hardware 
 resources are then allocated for the device. This allows for support many more
-devices than Linux.
+devices than Linux. In addition to the installation of the current device, 
+it also involves the loading of other drivers in the device driver stack
+and provides an interface for drivers and applications to specify what 
+actions to take when there are certain changes to the hardware environment.
+Plug and Play is implemented with a Plug and Play manager that exists in 
+kernel mode.
 \\
 \linebreak
 DLL's and .so files are very different in the way that they link dynamic 
@@ -461,6 +472,28 @@ and power saving functionality including device specific power
 management.
 \\
 \linebreak
+Dynamically loadable modules allow to save memory by only loading a module 
+once and having it linked to many different programs that use it. It allows
+for more modularity. Windows and Linux both support it because there are many
+diffferent ways in which it can be of use. Windows DLLs can also be used 
+as an export driver that other kernel mode drivers can call functions from.
+Windows uses a lookup table for the DLLs to point to its functions and data.
+Therefore, references to functions and data from the DLL code do not have
+to be updated. 
+\\
+\linebreak
+Uniform device driver functions as mentioned earlier, greatly simplify 
+device driver development for both operating systems. In Windows, enforcing
+support of plug and play and power management for all WDM drivers ensures 
+that users can automatically have their device recognized and have the 
+necessary driver software installed as well as allow Windows to 
+automatically manage the power states of the device. Providing a standard 
+like this allows support for a great number of devices. Linux does not
+require its drivers to do as much as WDM, because it provides less support for
+features like plug and play or power management, but it still requires 
+that devices implement a uniform interface.
+\\
+\linebreak
 Windows supports a complex plug and play I/O subsystem to support a large 
 range of devices and to simplify device driver installation for the user. 
 Linux does not provide this kind of plug and play subsystem because it is 
@@ -468,7 +501,9 @@ designed for skilled programmers who can install or even write their own
 drivers for devices. They need a simple, elegant interface to write their 
 drivers and load them. Not as many devices are supported, but the understanding
 is that Linux programmers would be able to install the device drivers on their
-own.
+own. Windows users cover a much larger population and the idea is to make
+their user experience better with features like plug and play.
+
 %input the pygmentized output of mt19937ar.c, using a (hopefully) unique name
 %this file only exists at compile time. Feel free to change that.
 %\input{__mt19937ar.c.tex}
