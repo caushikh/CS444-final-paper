@@ -417,6 +417,23 @@ module's functions and data are updated to point to the actual locations in
 memory where they are placed. DLL's use a look-up table to map references to 
 the module's functions and data.
 \subsection{Why Similarities and Differences Exist?}
+Both Windows and Linux offer basic filesystem calls for devices because most 
+devices are block devices that allow random access of different sectors. 
+The basic filesystem calls manipulate blocks of data and can thus be used 
+without many changes for other devices as well. Providing a uniform interface
+that all device drivers must implement greatly simplifies driver development
+and allows for the use of many devices. Both Windows and Linux take advantage
+of this abstraction for this reason. 
+\\
+\linebreak
+Asynchronous I/O is important for both operating systems because neither 
+operating system wants many processes or threads blocking so that some I/O 
+can complete. It will waste processor time and it is just inefficient. 
+Particularly in Windows, with many more lightweight threads executing and 
+making I/O requests, it is important that execution continues and that 
+options are provided to receive the I/O response when it has completed.
+\\
+\linebreak
 Windows supports a complex plug and play I/O subsystem to support a large 
 range of devices and to simplify device driver installation for the user. 
 Linux does not provide this kind of plug and play subsystem because it is 
