@@ -171,6 +171,17 @@ creation of a number of different applications. This has enabled a tremendous
 amount of software to be engineered for both Windows and Linux. 
 \\
 \linebreak
+Both operating systems support user mode and kernel mode because it protects
+the operating system from being damaged in a fatal way. In addition, since 
+both operating systems support multiple users and support multitasking, 
+failures in one application will not cause the entire system to crash. 
+Protecting the operating system from modification by application programs 
+ensures that the system will continue to run reliably. In addition, it 
+relieves application programs from having to manage the system and worry that
+anything it will do will affect the system. It is a fundamental abstraction of 
+operating systems that essentially all operating systems will have.
+\\
+\linebreak
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
 quicker execution. Thus they are represented by a separate data structure that 
