@@ -15,6 +15,7 @@ pdf: ${TARGET}.tex
 #	you can also have a bibtex line here
 	bibtex $(TARGET)
 	pdflatex $(TARGET).tex
+	pdflatex $(TARGET).tex
 #	remove the pygmentized output to avoid cluttering up the directory
 	rm __${SRC}.tex
 	rm __${WINPROC}.tex

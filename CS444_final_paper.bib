@@ -3,75 +3,28 @@
     title = {Linux Kernel Development},
     publisher = {Pearson Education International},
     chapter = {3},
-    year = {2010},
-    annote = { This chapter describes processes as  one of the
-    		  fundamental abstractions of the Linux operating
-		  systems. Processes include a set of resources like
-		  files and signals associated with a program as well
-		  as one or more threads of execution. Threads are a
-		  special kind of process in Linux. It covers the process
-		  descriptor and state transition of a process. It describes
-		  copy-on-write semantics for processes and thread creation
-		  and kernel threads. Finally, it covers Linux process
-		  termination and zombie processes.}}
+    year = {2010}}
 
 @inbook{love:linux4,
     author = {R. Love},
     title = {Linux Kernel Development},
     publisher = {Pearson Education International},
     chapter = {4},
-    year = {2010},
-    annote = { This chapter covers process scheduling in Linux. The 
-    		  scheduler is the manager of processor time among 
-		  multiple tasks. It must decide which processes to 
-		  run at any time. A process can either have an I/O 
-		  Bound schedule policy or a Processor-Bound schedule 
-		  policy. Every process has a priority level. The chapter
-		  goes through modular design of schedulers in Linux with
-		  scheduler classes and the CFS scheduling policy. It
-		  finally covers the FIFO and Round Robin real-time 
-		  schedulers.}}
+    year = {2010}}
 
 @inbook{love:linux12,
     author = {R. Love},
     title = {Linux Kernel Development},
     publisher = {Pearson Education International},
     chapter = {12},
-    year = {2010},
-    annote = { This chapter covers memory management in Linux. It starts  
-		  by mentioning that the basic unit of memory in the kernel
-		  is a page. The memory management unit is dedicated 
-		  hardware for managing memory. It covers the different zones
-		  like DMA, DMA32, NORMAL, and HIGHMEM.
-		  It covers the main low-level interface for obtaining 
-		  pages - the allocpages call and the functions for freeing
-		  allocated pages. It describes in detail the kmalloc, kfree,
-		  and vmalloc functions. The chapter then discusses the main
-		  object cache in the Linux Kernel - the slab layer and how
-		  it behaves as a free list in which allocated pages can be
-		  placed and retrieved later relatively quickly. Finally, the
-		  chapter covers static allocation on the stack and high 
-		  memory mappings.}}
+    year = {2010}} 
 
 @inbook{love:linux14,
     author = {R. Love},
     title = {Linux Kernel Development},
     publisher = {Pearson Education International},
     chapter = {14},
-    year = {2010},
-    annote = { This chapter covers block devices and the basic block
-    		  I/O subsystem. It describes block devices as hardware
-		  devices that support random access of fixed size chunks
-		  of data. It distinguishes between character devices in
-		  that block devices can be randomly accessed. It covers 
-		  sectors and provides a general overview how block 
-		  devices like hard disks work. It explains in detail the 
-		  bio struct, the basic Block I/O container. It then provides 
-		  a brief overview of request queues and various I/O
-		  schedulers. Specifically, it discusses the Linus Elevator,
-		  Deadline I/O Scheduler, Anticipatory Scheduler, 
-		  Complete Fair Queuing I/O Scheduler, and the Noop 
-		  Scheduler.}}
+    year = {2010}}
 
 @inbook{tanenbaum:modern10,
     author    = {A. Tanenbaum},
@@ -79,22 +32,7 @@
     publisher = {Pearson Education International},
     address   = {Amsterdam, The Netherlands},
     chapter = {10},
-    year      = {2009},
-    annote ={This chapter contains information about Linux and how
-    		  it manages processes, memory, I/O, and its file
-		  system implementation. It covers process creation 
-		  through the fork() system call. It describes the 
-		  taskstruct process data structure. Threads and 
-		  processes are both created with the clone() 
-		  system call. Linux schedules threads. With regard
-		  to memory management, the mmap and munmap system 
-		  calls control memory-mapped files. Physical memory
-		  is managed in different zones of different sizes. The
-		  basis for I/O in Linux is the file abstraction. Devices
-		  are divided into block devices and character devices
-		  depending on how data can be accessed from them. 
-		  Finally, the chapter covers dynamically loadable 
-		  modules.} }
+    year      = {2009}}
 
 @inbook{tanenbaum:modern11,
     author    = {A. Tanenbaum},
@@ -102,62 +40,21 @@
     publisher = {Pearson Education International},
     address   = {Amsterdam, The Netherlands},
     chapter = {11},
-    year      = {2009},
-    annote ={This chapter contains information about Windows Vista, 
-    		  the latest version of Windows at the time it was
-		  written, as well as earlier versions like MS-DOS 
-		  and NT-Based Windows. Specifically, it covers 
-		  information about the Win32 API and Windows Registry,
-		  the NT filesystem, NTOS, VMS, Asynchronous Procedure 
-		  Calls, plug-and-play I/O subsystem, among other 
-		  features of Windows. Process creation involves 
-		  many parameters. Processes in Windows hold handles to 
-		  threads. Processes are a container for holding resources
-		  while threads are entities to be scheduled by the 
-		  kernel. The kernel always selects a thread to run,
-		  not a process. } }
+    year      = {2009}}
 
 @book{nagar:windows,
     author = {R. Nagar},
     title = {Windows NT File System Internals: A Developer's Guide.},
     publisher = {O'Reilly},
-    year = {1997},
-    annote = {This source contains some useful information about 
-    		 process management in Windows NT as well as 
-		 virtual memory management and the NT filesystem.
-		 In process management, the source mentions that 
-		 processes in Windows are not schedulable entities 
-		 in themselves, but they contain one or more threads
-		 that are scheduled for execution. Threads have a
-		 priority level which can be real-time or variable.
-		 The source goes over the Windows NT demand paged
-		 Virtual Memory Manager, which is similar to Linux
-		 Memory management. The process address space contains
-		 a paged pool and non-paged pool which is only 
-		 accessed in kernel mode, and some user-space 
-		 addresses containing process specific code and data.
-		 The source also contains information about the NT 
-		 filesystem drivers. } }
+    year = {1997}}
 
-@inbook{russinovich.solomon:windows-chapter6,
+@inbook{rsw6,
     author = {M. E. Russinovich and D. Solomon},
     title = {Microsoft Windows Internals; Microsoft Windows Server 2003,
     		Windows XP, and Windows 2000, 4th ed},
     publisher = {Microsoft Press},
     chapter = {6},
-    year = {2006},
-    annote = {This chapter covers the internal structures that make up
-    		 processes in Windows. It discusses the creation of threads
-		 and the internals of thread scheduling. In addition it
-		 includes information of job objects. It describes the 
-		 structure of the executive process block and the 
-		 structure of the process environment block. It provides 
-		 a step by step guide to creating a process. With regard
-		 to threads it provides and describes the structure of the
-		 executive thread block, kernel thread block, and an 
-		 overview of Windows preemptive scheduling. It describes 
-		 a job object as a kernel construct that can manage a group
-		 of processes as a unit.}}
+    year = {2006}}
 
 @inbook{russinovich.solomon:windows-chapter7,
     author = {M. E. Russinovich and D. Solomon},
@@ -165,25 +62,7 @@
     		Windows XP, and Windows 2000, 4th ed},
     chapter = {7},
     year = {2006},
-    publisher = {Microsoft Press},
-    annote = {This chapter covers memory management within the
-    		 Windows kernel. It describes how Windows implements 
-		 virtual memory and explains the distinctions between
-		 reserved memory, committed memory, and shared memory. It
-		 discusses the key components of the Windows memory 
-		 manager: the working set manager, process/stack swapper,
-		 modified page writer, mapped page writer, dereference 
-		 segment thread, and zero page thread. It describes the 
-		 Windows memory manager as fully reentrant in that it 
-		 maintains no static data over successive calls. It thus 
-		 uses synchronization constructs like spinlocks and 
-		 executive resources to control access to its own internal
-		 data structures. It goes into detail about memory 
-		 protection, page table entries, physical address 
-		 extension, and translation lookaside buffers. It 
-		 emphasizes the use of lazy evaluation like copy-on-write 
-		 semantics to avoid time-consuming and unnecessary 
-		 computation.}}
+    publisher = {Microsoft Press}}
 
 @inbook{russinovich.solomon:windows-chapter9,
     author = {M. E. Russinovich and D. Solomon},
@@ -191,64 +70,25 @@
     		Windows XP, and Windows 2000, 4th ed},
     chapter = {9},
     year = {2006},
-    publisher = {Microsoft Press},
-    annote = {This chapter covers the Windows I/O system. It provides 
-    		 information about the Plug and Play manager and 
-		 power manager. It discusses key data structures used for
-		 devices, device drivers, and I/O requests. Plug and 
-		 Play is where the system installs drivers for newly 
-		 detected drivers and provide the hardware resources
-		 they require. The hardware abstraction layer hides the 
-		 details of the processor differences between platforms
-		 by providing APIs to access the devices. The I/O system
-		 is packet driven. This source provides the flow of a 
-		 typical I/O request. It provides the distinctions between
-		 file system drivers, plug and play drivers, and non-plug
-		 and play drivers. It provides a description of the Windows
-		 Driver Model. It explains in detail the structure of a 
-		 driver.}}
+    publisher = {Microsoft Press}}
 
 @misc{msdn:processes,
     title = "Processes~and~{Threads}",
     organization = {MSDN},
     howpublished = "\url{msdn.microsoft.com/en-us/library/windows/desktop/ms684841(v=vs.85).aspx}",
-    note = "[Online; accessed 7-December-2014]",
-    annote = { This page describes processes and threads in Windows. It
-    		  describes a process as an executing program and a thread
-		  as the basic unit in which the kernel allocates 
-		  processor time. It defines a thread pool as a collection 
-		  of worker threads that execute asynchronous callbacks. It
-		  defines a fiber as a unit of execution that an application
-		  must manually schedule. User-mode scheduling is a 
-		  way applications can schedule their own threads. It 
-		  discusses preemptive multitasking, thread context, and 
-		  examples for creating processes and threads.}}
+    note = "[Online; accessed 7-December-2014]"}
 
 @misc{msdn:memory,
     title = "Memory {Managment}",
     organization = {MSDN},
     howpublished = "\url{msdn.microsoft.com/en-us/library/windows/desktop/aa366779%28v=vs.85%29.aspx}",
-    note = "[Online; accessed 7-December-2014]",
-    annote = { This page describes memory management in Windows. It discusses
-		  the virtual address space for processes and their threads. It
-		  talks about the paged and non-paged memory pools. It provides
-		  a reference of functions for allocating, freeing, comparing,
-		  and working with pages. It covers file mapping objects and 
-		  file views and the different functions for creating them. }}
+    note = "[Online; accessed 7-December-2014]"}
 
 @misc{msdn:overview,
     title = "Overview of the {Windows} {I}/{O} {Model}",
     organization = {MSDN},
     howpublished = "\url{msdn.microsoft.com/en-us/library/windows/hardware/ff558762%28v=vs.85%29.aspx}",
-    note = "[Online; accessed 7-December-2014]",
-    annote = { This page describes I/O management in Windows. It specifically
-    		  mentions the Microsoft Windows I/O model's support for 
-		  asynchronous I/O. All requests for drivers are sent as 
-		  I/O request packets or IRPs. IRPs are handled in a layered
-		  fashion, progressing from one driver to another all the way
-		  down to the physical devices. The source covers the Life of
-		  an I/O request, I/O stack locations, and I/O status blocks. It
-		  also contains some IRP processing examples.}}
+    note = "[Online; accessed 7-December-2014]"}
 
 		  
 		  
