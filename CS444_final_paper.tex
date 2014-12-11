@@ -203,7 +203,11 @@ to run system calls much faster.
 \subsection{Similarities}
 Both Windows and Linux offer a number of similar system calls for I/O like 
 open, read, write, ioctl, and close. Both operating systems view devices as 
-files and control access to devices with basic file system functions.
+files and control access to devices with basic file system functions. In 
+Linux, these are open(), read(), write(), ioctl(), and close(). In Windows, 
+I/O request packets (IRP) are created and then passed to the I/O subsystem. 
+The IRPs specify the operations to be performed and that correspond to the 
+I/O manager. These include CREATE, READ, WRITE, IOCTL, and CLOSE.
 \\
 \linebreak
 Both Windows and Linux provide support for asynchronous I/O. It is a method of
@@ -212,7 +216,7 @@ not block until data becomes available. Linux provides this functionality
 through its AIO system calls like io\_setup, io\_destroy, io\_submit,
 io\_cancel, and io\_getevents. Windows provides this functionality in a number
 of ways and offers a number of options to implement it. Examples include 
-creating an event object when making an I/O call and waiting it at a later 
+creating an event object when making an I/O call and waiting on it at a later 
 point in time, and specifying a queue to which a completion event will be 
 added by the I/O manager.
 \\
@@ -233,6 +237,13 @@ Both Windows and Linux support dynamically loadable modules. In Windows, these
 modules are called dynamically linked libraries, or DLL's. In Linux, the 
 modules are called shared objects or .so files. They allow for functions and 
 data to be linked at runtime. 
+\\
+\linebreak
+Both Windows and Linux have a uniform device access interface for their 
+device drivers. In Windows, this is called the Windows Driver Model (WDM) 
+that all device drivers must conform to. This exists so that application 
+programs can access devices in a uniform way without having to worry about
+the details of the device implementation. 
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
