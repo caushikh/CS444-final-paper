@@ -393,7 +393,11 @@ specific driver functionality.
 Hibernation, or suspending to disk, is supported by both Linux and Windows.
 It involves saving the computer's state to the disk and then powering down to
 save power. Windows performs a number of optimizations like compression of 
-memory pages and ignoring unmodified pages backed by disk.
+memory pages and ignoring unmodified pages backed by disk. in addition to 
+reducing power consumption by techniques such as shutting off the display or 
+stopping disk drives from spinning, Windows allows for devices not in use 
+to save power by entering sleep states. It also provides optimizations
+to avoid a full system boot when exiting its sleep state.
 \\
 \linebreak
 Both Windows and Linux support dynamically loadable modules. In Windows, these
@@ -446,6 +450,15 @@ communicating through and should not need to even know the inner
 implementation details of that bus. It greatly simplifies development of 
 device drivers and makes it much easier for the system to support such large
 arrays of devices.
+\\
+\linebreak
+Both Windows and Linux are concerned with conserving power and have both 
+developed a hibernation state to save the state of the computer onto disk and
+then enter a low power state. Windows has a much more developed power saving
+infrastructure because it is consumer oriented and consumers often leave 
+their laptops on and unattended. This has resulted in complex power states 
+and power saving functionality including device specific power 
+management.
 \\
 \linebreak
 Windows supports a complex plug and play I/O subsystem to support a large 
