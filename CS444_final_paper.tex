@@ -311,10 +311,14 @@ be made. Linux provides less kernel virtual memory in a process's address
 space, causing more context switches to take place. 
 \\ 
 \linebreak
-Linux manages 3 levels of page tables to map virtual addresses into physical
-addresses. These are the Page General Directory (PGD), Page Middle Directory
-(PMD), and the Page Table Entry (PTE). Windows has 2 levels of page tables. 
-These are the Page Directory and the Page Tables.
+Linux manages 4 levels of page tables to map virtual addresses into physical
+addresses. These are the Page General Directory (PGD), Page Upper Directory
+(PUD), Page Middle Directory (PMD), and the Page Table Entry (PTE). Windows
+has 2 levels of page tables. These are the Page Directory and the Page Tables.
+Usually, Windows and Linux support 4 KB pages. To address 4 GB of memory in
+Windows, the PGD needs have 1024 entries and each of those 1024 entries in
+the PGD can reference 1024 different 4 KB pages. Multilevel page tables
+are needed when not all page tables can be stored in memory.
 \subsection{Why Similarities and Differences Exist?}
 Both Windows and Linux provide a virtual address space for its processes
 because they are a useful abstraction for any sort of operating system 
@@ -347,6 +351,12 @@ context switch. Less of a process's virtual memory is private, but it is able
 to run system calls much faster. This is important because performance is a 
 primary concern for Windows systems. Linux is willing to sacrifice performance
 for more private virtual address space for each process.
+\\
+\linebreak
+Windows uses only a two level page table because the private virtual memory 
+for each process is smaller. It thus does not need as many page tables to 
+map that amount of memory. Two levels is sufficient. Linux maps more user
+virtual memory so it requires four levels. 
 \section{I/O}
 \subsection{Similarities}
 Both Windows and Linux offer a number of similar system calls for I/O like 
