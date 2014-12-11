@@ -290,22 +290,14 @@ space would have to be changed again. Instead, copy-on-write defers the
 copying of the address space until a change to the address space is actually 
 attempted.
 \subsection{Differences}
-In Windows, all user processes share the kernel's virtual memory. This is only 
-accessible when running in kernel mode, but eliminates the need to change the
-memory map when a system call is made. This is a trade-off between less private
-address space per process and faster system calls. Linux performs a 
-context-switch whenever a system call from user space traps into the kernel. 
-\\
-\linebreak
-A consequence of this is that Windows threads can trap into the kernel and 
-access other address spaces and then switch back to the original address space
-before returning to user mode.
-\\
-\linebreak
 Windows provides support for shared memory objects directly by memory 
 mapped files that multiple processes can open in their virtual address space.
 On the contrary, in Linux one process must allocate a shared memory segment and
-then one or more other processes attach it to their address space.
+then one or more other processes attach it to their address space. The 
+mechanism by which Linux provides shared memory objects is different than 
+simple memory mapping a file. It must do the additional step of assigning the
+memory mapped file as a shared memory object that other processes can attach
+to their address space.
 \\
 \linebreak
 Windows and Linux processes have different amounts of their virtual address
