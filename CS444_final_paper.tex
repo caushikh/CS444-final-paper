@@ -234,7 +234,12 @@ modularity.
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
 quicker execution. Thus they are represented by a separate data structure that 
-is more lightweight.
+is more lightweight. Linux threads share the same heap and global variables.
+On the contrary processes have completely different address spaces. Windows
+threads are the schedulable execution units. They do not contain any 
+resources themselves, but contain a reference to the executive process block
+that created them. They can thus run faster without the overhead of processes
+and can reference the executive process block whenever they need them. 
 
 \section{Memory Management}
 \subsection{Similarities}
