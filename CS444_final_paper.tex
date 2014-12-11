@@ -188,6 +188,15 @@ anything it will do will affect the system. It is a fundamental abstraction of
 operating systems that essentially all operating systems will have.
 \\
 \linebreak
+Background processes are supported by both operating systems because they can
+support services to more than one user and more than one process or 
+application that these applications or users do not need to be concerned with.
+Certain services like a secure shell server or http server are not 
+interactive, but are used often enough by many different applications and 
+users that it is necessary to have these processes in memory. Both operating
+systems have services like these that they need to support non-interactively.
+\\
+\linebreak
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
 quicker execution. Thus they are represented by a separate data structure that 
