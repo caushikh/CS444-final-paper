@@ -212,6 +212,20 @@ back to disk, for example,  warrants a separate thread or execution unit that
 continuously executes in kernel space. 
 \\
 \linebreak
+Linux provides 2 calls to create a new process and then load a new executable 
+image because one of Linux's main design principles is for each function to 
+do one thing and do it well. It provides one function to create the process
+and it provides another function to load a new executable image. The design 
+is simple and modular. Changing the functionality in one of these functions
+will not affect the other. In Windows, simplicity is not necessarily a 
+design goal and so it does not see a need to separate these two 
+functionalities. Creating new processes and specifying the new 
+executable image with an argument avoids the redundancy of making two calls
+to do this. In addition, Windows does not anticipate that this 
+functionality will necessarily change and so there is no need for the 
+modularity.
+\\
+\linebreak
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
 quicker execution. Thus they are represented by a separate data structure that 
