@@ -382,7 +382,12 @@ added by the I/O manager.
 Both operating systems provide support for stacked device drivers. In Linux
 they are called stacked modules. The idea is that drivers share certain 
 functionalities and that multiple other drivers can be executed before 
-executing the core functionality of a particular driver.
+executing the core functionality of a particular driver. Windows makes heavy 
+use of this. I/O requests can pass through a number of drivers that each take 
+care of a part of the driver's work. A common use of this is the separation of
+bus management from the management of the actual device. A new device can 
+thus just use the standard bus driver and only need to write its device 
+specific driver functionality.
 \\
 \linebreak
 Hibernation, or suspending to disk, is supported by both Linux and Windows.
@@ -432,6 +437,15 @@ can complete. It will waste processor time and it is just inefficient.
 Particularly in Windows, with many more lightweight threads executing and 
 making I/O requests, it is important that execution continues and that 
 options are provided to receive the I/O response when it has completed.
+\\
+\linebreak
+Stacked device drivers are a useful functionality for both operating system 
+because it supports standardization and reuse of code. Device manufacturers
+should not need to write drivers for the buses that their device will be 
+communicating through and should not need to even know the inner 
+implementation details of that bus. It greatly simplifies development of 
+device drivers and makes it much easier for the system to support such large
+arrays of devices.
 \\
 \linebreak
 Windows supports a complex plug and play I/O subsystem to support a large 
