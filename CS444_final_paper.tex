@@ -143,7 +143,7 @@ file image in Linux.
 
 \input{__execeg.c.tex}
 
-Here is an example of the CreateProcess function in Windows. Notice that the
+Here is an example of the CreateProcess function in Windows~\cite{msdn-cp}. Notice that the
 name of the module to be executed is an argument to the function whereas in
 Linux, a separate exec call had to be made.
 
@@ -151,19 +151,19 @@ Linux, a separate exec call had to be made.
 
 A significant difference between Windows and Linux is the implementation of 
 threads. In Linux, threads are implemented as task\_structs just like 
-standard processes and simply share resources with other processes or threads.
+standard processes and simply share resources with other processes or threads~\cite{love3}.
 In Windows, processes contain one or more threads and only those threads are
 schedulable by the scheduler. Windows dedicates a special data structure to 
-threads called the executive thread block. There is nothing different in the
+threads called the executive thread block~\cite{rsw6}. There is nothing different in the
 way that threads are represented in Linux except for the fact that they share
 part of the address space as their parent. Their process id is also the same
 as their parent. In Windows, every process contains one or more threads
 and cannot execute without these threads. Processes are designed to be 
-resource managers and threads are designed to be the units of execution.
+resource managers and threads are designed to be the units of execution~\cite{tm11}.
 \\
 \linebreak
 In Linux, processes are schedulable and have schedulable states like running,
-zombie, and interruptiple. In Windows only threads have schedulable states and
+zombie, and interruptiple~\cite{love3}. In Windows only threads have schedulable states and
 processes are not schedulable. Processes in Windows only exist to serve as a
 container for resources while in Linux, processes do that as well as execute 
 code. In Windows, these states are ready, standby, running, waiting, 
@@ -173,18 +173,18 @@ that are executing and are selected next to run. The wait state is for
 threads that have been preempted for specific reasons. The transition state 
 are for threads that are ready for execution but whose kernel stack has been
 swapped out to disk. Threads in the terminated state are done executing
-and the initialized state signifies that a thread has just been created. 
+and the initialized state signifies that a thread has just been created~\cite{rsw6}. 
 \\
 \linebreak
 Windows also contains entities called jobs and fibers that are not supported 
 by Linux. Jobs are collections of processes that can be managed as a unit.
 Fibers are essentially threads that are scheduled in user space instead of
-by the kernel's scheduling algorithm. A Windows process can belong to only
+by the kernel's scheduling algorithm~\cite{tm11}. A Windows process can belong to only
 one job object. A job object can specify the CPU time allocated to threads
-belonging to a set of processes. Job objects are created and opened with the
-API CreateJobObject and OpenJobObject. Fibers are switched with much less
+belonging to a set of processes~\cite{tm11}. Job objects are created and opened with the
+API CreateJobObject and OpenJobObject~\cite{msdn-proc}. Fibers are switched with much less
 overhead than switching between threads. It avoids the need to enter and 
-exit the kernel.
+exit the kernel~\cite{tm11}.
 
 \subsection{Why Similarities and Differences Exist?}
 The process address space is present and is similar in both Windows and Linux
