@@ -72,8 +72,14 @@ The information contained in the process containers for both Linux and Windows
 are very similar. Specifically, all processes contain a private virtual 
 address space, program code, sets of resources like opened files and signals,
 and multiple threads of execution. The process descriptors contain references
-to machine registers, CPU time accounting, kertnel stacks, and file-descriptor
-tables to locate system calls. 
+to machine registers, CPU time accounting, kernel stacks, and file-descriptor
+tables to locate system calls. In Windows, this is the Executive Process Block
+and in Linux, processes are represented by task\_struct structures. The 
+Executive Process Block of each process contains a Process Environment Block 
+that is accessible in user space. It includes information about the executable
+image, process heap, and thread storage. The task\_struct also contains 
+information accessible in user space like the heap, stack, and global
+variables.
 \\
 \linebreak
 Both Linux and Windows implement user mode and kernel mode. In both operating
