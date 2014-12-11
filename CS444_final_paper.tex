@@ -303,7 +303,12 @@ to their address space.
 Windows and Linux processes have different amounts of their virtual address
 space dedicated to kernel virtual memory. Windows dedicates 2 GB of each 4 GB
 process address space for kernel virtual memory. Linux dedicates 1 GB of each
-4 GB process address space for kernel virtual memory.
+4 GB process address space for kernel virtual memory. A consequence of this 
+is that Windows processes have less private virtual memory. In return, they 
+can execute system calls faster because the kernel can execute more code 
+within the process's kernel virtual memory and no context switch would need to
+be made. Linux provides less kernel virtual memory in a process's address 
+space, causing more context switches to take place. 
 \\ 
 \linebreak
 Linux manages 3 levels of page tables to map virtual addresses into physical
