@@ -155,6 +155,13 @@ any of the other threads in that process. In Linux, the threads are represented
 as standard processes and can thus own their own resources. 
 
 \subsection{Why Similarities and Differences Exist?}
+The process address space is present and is similar in both Windows and Linux
+because both operating systems need to provide structure to running programs
+and provide an abstraction that individual programs monopolize the processor.
+Application programs should not have to worry about details like managing 
+resources it needs. This improves programmer productivity and allows for the
+creation of a number of different applications. This has enabled a tremendous 
+amount of software to be engineered for both Windows and Linux. 
 
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
