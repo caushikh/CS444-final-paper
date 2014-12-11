@@ -225,7 +225,7 @@ continuously executes in kernel space.
 \linebreak
 Linux provides 2 calls to create a new process and then load a new executable 
 image because one of Linux's main design principles is for each function to 
-do one thing and do it well. It provides one function to create the process
+do one thing and do it well~\cite{tm10}. It provides one function to create the process
 and it provides another function to load a new executable image. The design 
 is simple and modular. Changing the functionality in one of these functions
 will not affect the other. In Windows, simplicity is not necessarily a 
@@ -239,18 +239,18 @@ modularity.
 \linebreak
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
-quicker execution. Thus they are represented by a separate data structure that 
+quicker execution~\cite{tm11}. Thus they are represented by a separate data structure that 
 is more lightweight. Linux threads share the same heap and global variables.
 On the contrary processes have completely different address spaces. Windows
 threads are the schedulable execution units. They do not contain any 
 resources themselves, but contain a reference to the executive process block
-that created them. They can thus run faster without the overhead of processes
+that created them~\cite{rsw6}. They can thus run faster without the overhead of processes
 and can reference the executive process block whenever they need them. 
 \\
 \linebreak
 Processes in Windows do not have schedulable states because they are not 
 meant to be units of execution. Windows also has more states for its threads
-because the dispatcher, or scheduler, is more complex. Threads are more 
+because the dispatcher, or scheduler, is more complex~\cite{rsw6}. Threads are more 
 lightweight in Windows and thus their can be many more threads that are 
 created at any point in time. More threads to manage naturally leads to
 more schedulable states and more complex scheduling algorithms. 
@@ -258,12 +258,12 @@ more schedulable states and more complex scheduling algorithms.
 \linebreak
 Jobs exist in Windows in order to constrain the threads they create in 
 certain ways. For example, they can be used to control access to a certain
-resource or prevent threads from accessing too many system objects. Because
+resource or prevent threads from accessing too many system objects~\cite{tm11}. Because
 a process is part of a job, all threads that are created from that process
-will also be in that job and can be controlled collectively. Fibers exist
+will also be in that job and can be controlled collectively~\cite{tm11}. Fibers exist
 to provide an execution unit that can be scheduled and run without the
 overhead of threads. Linux does not want all these different execution
-units or execution managers because the main design goal is simplicity. 
+units or execution managers because the main design goal is simplicity~\cite{tm10}. 
 It wants as few execution units as possible and keep life simple for 
 application programs.
 \section{Memory Management}
