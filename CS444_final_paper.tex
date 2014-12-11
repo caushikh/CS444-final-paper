@@ -102,7 +102,13 @@ these are called Windows Services and are managed by the Service Control
 Manager. In Linux, background processes are called daemons and are created 
 when a process is forked and its parent terminates. The new process then calls
 setsid() to free itself from the controlling terminal. Windows Services and 
-daemons are both usually created at system startup.
+daemons are both usually created at system startup. Background processes in
+Windows and Linux usually are usually long-lived and run until the system 
+is shut down. They usually carry out specific tasks like sshd and httpd, the
+two Linux daemons that manage logins from remote hosts using the ssh protocol
+and serve web pages respectively. An example of a Windows Services is 
+the plug and play manager that automatically recognizes devices and installs
+the necessary driver software.
 \\
 \linebreak
 Both operating systems provide support for threads that only run in kernel 
