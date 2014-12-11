@@ -1,10 +1,3 @@
-#include <pthread.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-int main() {
-	pid_t pid;
-
 	pid = fork();
 	if (pid == -1) {
 		printf("Fork error\n");
@@ -20,5 +13,4 @@ int main() {
 		printf("I am the parent process.\n");
 	}
 	wait();
-	return 0;
-}
+
