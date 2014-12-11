@@ -117,7 +117,12 @@ known as system threads. System threads can be created with the system call
 PsCreateSystemThread. Linux kernel threads are usually created at system 
 startup. In Linux, these threads are not represented by a separate task\_struct
 and do not have a separate process context. Likewise, in Windows, these
-System threads do not have a Thread Exectution Block (TEB).
+System threads do not have a Thread Environment Block (TEB). They lack a user
+process address space. In Windows, kernel mode system threads are often 
+created at system startup to perform operations like writing dirty pages to
+page files or swapping processes in and out of memory. In Linux, kernel 
+threads execute tasks like pdflush to write dirty pages to page files and 
+ksoftirqd to handle soft interrupts.
 \subsection{Differences}
 
 One fundamental difference between Linux and Windows is in process creation. 
