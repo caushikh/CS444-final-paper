@@ -154,9 +154,14 @@ threads. In Linux, threads are implemented as task\_structs just like
 standard processes and simply share resources with other processes or threads.
 In Windows, processes contain one or more threads and only those threads are
 schedulable by the scheduler. Windows dedicates a special data structure to 
-threads called the executive thread block. 
+threads called the executive thread block. There is nothing different in the
+way that threads are represented in Linux except for the fact that they share
+part of the address space as their parent. Their process id is also the same
+as their parent. In Windows, every process contains one or more threads
+and cannot execute without these threads. Processes are designed to be 
+resource managers and threads are designed to be the units of execution.
 \\
-
+\linebreak
 In Linux, processes are schedulable and have schedulable states like running,
 zombie, and interruptiple. In Windows only threads have schedulable states and
 processes are not schedulable. Processes in Windows only exist to serve as a
