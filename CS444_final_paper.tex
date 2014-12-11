@@ -180,12 +180,6 @@ Windows also contains entities called jobs and fibers that are not supported
 by Linux. Jobs are collections of processes that can be managed as a unit.
 Fibers are essentially threads that are scheduled in user space instead of
 by the kernel's scheduling algorithm. 
-\\
-
-Threads in Windows are not meant to own any resources. Therefore, any object
-that one thread creates belongs to its process and is therefore accessible to 
-any of the other threads in that process. In Linux, the threads are represented
-as standard processes and can thus own their own resources. 
 
 \subsection{Why Similarities and Differences Exist?}
 The process address space is present and is similar in both Windows and Linux
@@ -247,7 +241,14 @@ threads are the schedulable execution units. They do not contain any
 resources themselves, but contain a reference to the executive process block
 that created them. They can thus run faster without the overhead of processes
 and can reference the executive process block whenever they need them. 
-
+\\
+\linebreak
+Processes in Windows do not have schedulable states because they are not 
+meant to be units of execution. Windows also has more states for its threads
+because the dispatcher, or scheduler, is more complex. Threads are more 
+lightweight in Windows and thus their can be many more threads that are 
+created at any point in time. More threads to manage naturally leads to
+more schedulable states and more complex scheduling algorithms. 
 \section{Memory Management}
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
