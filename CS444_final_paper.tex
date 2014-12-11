@@ -270,10 +270,10 @@ application programs.
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
 In Windows, the process's virtual address space is managed by a component
-of the operating system called the memory manager. The subset of a process's
-virtual address space in Windows that is in memory is called a working set.
+of the operating system called the memory manager~\cite{rsw7}. The subset of a process's
+virtual address space in Windows that is in memory is called a working set~\cite{tm11}.
 In both Linux and Windows, the virtual address space provided to a process
-can be larger than the amount of physical memory available. Thus, both 
+can be larger than the amount of physical memory available~\cite{12}. Thus, both 
 operating systems make use of paging to provide this illusion.
 \\
 \linebreak
@@ -281,14 +281,14 @@ Both Windows and Linux support copy-on-write paging. When an attempt is made
 to modify pages that start out originally as read-only pages, the memory 
 manager makes a private writable copy of the page and updates the page table 
 to reference the new private page. The new page will then be paged out rather
-than the original page. This is also called lazy evaluation. The actual copy
+than the original page. This is also called lazy evaluation~\cite{rsw7}. The actual copy
 of a page will only be made by when there is an attempt to modify it. In 
 Linux, one of the main ways in which copy-on-write is used is when making the
 fork() system call. The process address space is not copied straight away 
 because often a call to exec() is called soon after and the process address
 space would have to be changed again. Instead, copy-on-write defers the 
 copying of the address space until a change to the address space is actually 
-attempted.
+attempted~\cite{tm10}.
 \subsection{Differences}
 Windows provides support for shared memory objects directly by memory 
 mapped files that multiple processes can open in their virtual address space.
@@ -297,13 +297,13 @@ then one or more other processes attach it to their address space. The
 mechanism by which Linux provides shared memory objects is different than 
 simple memory mapping a file. It must do the additional step of assigning the
 memory mapped file as a shared memory object that other processes can attach
-to their address space.
+to their address space~\cite{tm10}.
 \\
 \linebreak
 Windows and Linux processes have different amounts of their virtual address
 space dedicated to kernel virtual memory. Windows dedicates 2 GB of each 4 GB
-process address space for kernel virtual memory. Linux dedicates 1 GB of each
-4 GB process address space for kernel virtual memory. A consequence of this 
+process address space for kernel virtual memory~\cite{tm11}. Linux dedicates 1 GB of each
+4 GB process address space for kernel virtual memory~\cite{tm10}. A consequence of this 
 is that Windows processes have less private virtual memory. In return, they 
 can execute system calls faster because the kernel can execute more code 
 within the process's kernel virtual memory and no context switch would need to
@@ -313,8 +313,8 @@ space, causing more context switches to take place.
 \linebreak
 Linux manages 4 levels of page tables to map virtual addresses into physical
 addresses. These are the Page General Directory (PGD), Page Upper Directory
-(PUD), Page Middle Directory (PMD), and the Page Table Entry (PTE). Windows
-has 2 levels of page tables. These are the Page Directory and the Page Tables.
+(PUD), Page Middle Directory (PMD), and the Page Table Entry (PTE)~\cite{tm10}. Windows
+has 2 levels of page tables. These are the Page Directory and the Page Tables~\cite{tm11}.
 Usually, Windows and Linux support 4 KB pages. To address 4 GB of memory in
 Windows, the PGD needs have 1024 entries and each of those 1024 entries in
 the PGD can reference 1024 different 4 KB pages. Multilevel page tables
