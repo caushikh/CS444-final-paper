@@ -269,6 +269,12 @@ application programs.
 \section{Memory Management}
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
+In Windows, the process's virtual address space is managed by a component
+of the operating system called the memory manager. The subset of a process's
+virtual address space in Windows that is in memory is called a working set.
+In both Linux and Windows, the virtual address space provided to a process
+can be smaller than the amount of physical memory available. Thus, both 
+operating systems make use of paging to provide this illusion.
 \\
 \linebreak
 Both Windows and Linux support copy-on-write paging. When an attempt is made
@@ -306,6 +312,14 @@ addresses. These are the Page General Directory (PGD), Page Middle Directory
 (PMD), and the Page Table Entry (PTE). Windows has 2 levels of page tables. 
 These are the Page Directory and the Page Tables.
 \subsection{Why Similarities and Differences Exist?}
+Both Windows and Linux provide a virtual address space for its processes
+because they are a useful abstraction for any sort of operating system 
+design. Every process can have its own private memory and not have to worry
+about having to manage where to allocate memory. Both can swap out memory 
+when they need to free up memory for other processes. It is a fundamental
+abstraction that is useful for all operating systems.
+\\
+\linebreak
 Windows makes the kernel's virtual memory part of every process's virtual 
 memory so that kernel code can run in kernel mode without having to perform a 
 context switch. Less of a process's virtual memory is private, but it is able
