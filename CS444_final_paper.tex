@@ -207,7 +207,8 @@ because both have tasks that must be frequently executed and that can only be
 executed in kernel mode. The frequency with which dirty pages are written 
 back to disk, for example,  warrants a separate thread or execution unit that
 continuously executes in kernel space. 
-
+\\
+\linebreak
 The implementation of threads in Linux is based on providing a mechanism to 
 share resources between processes while in Windows, threads exist to provide
 quicker execution. Thus they are represented by a separate data structure that 
