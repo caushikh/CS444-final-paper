@@ -131,9 +131,12 @@ fork(), to create a duplicate of the current process, and exec(), to load an
 executable file into the new process's address space and then execute it. 
 In Windows, a call to one of the process creation functions like CreateProcess
 loads an executable image file, or an .exe file, and creates the Windows
-executive process object all in one.
+executive process object all in one. In Linux, this allows a forked process
+to do some work before it loads a new executable image. In Windows, one can
+duplicate a process by specifying the executable module argument in 
+CreateProcess as NULL. 
 \\
-
+\linebreak
 The following is a short snippet of code demonstrating the use of fork() and
 then the call to execv() to create the new process with the new executable
 file image in Linux.
