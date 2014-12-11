@@ -326,6 +326,16 @@ unnecessarily copying the address space for a process for which its
 executable image will likely change soon after.
 \\
 \linebreak
+Similar to the reason Linux provides two system calls for creating a process 
+and then attaching an executable image to it, it sees memory mapping a file 
+and assigning it as a shared memory segment as two different functionalities
+that shouldn't be merged into one. This maintains modularity and ensures that
+each function do only one thing. Windows implements shared memory as memory 
+mapped files because they are related functionalities that can be combined 
+into one. One process can create the memory mapping. Another process can
+open the memory mapped file so that it is in its address space as well. 
+\\
+\linebreak
 Windows makes the kernel's virtual memory part of every process's virtual 
 memory so that kernel code can run in kernel mode without having to perform a 
 context switch. Less of a process's virtual memory is private, but it is able
