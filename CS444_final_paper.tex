@@ -87,7 +87,14 @@ systems, a thread can invoke a system call that causes the kernel to execute
 kernel code on behalf of the thread. The thread contains a separate kernel 
 mode stack and kernel mode program counter for execution in kernel mode. These
 are saved and restarted when switching from kernel mode to user mode and vice
-versa.
+versa. The Windows process address space includes a process environment block
+and thread environment block that includes information that is accessible in
+user mode. This includes the information described above in the previous
+paragraph. The actual process executive block itself is only accessible in 
+kernel mode and can only be manipulated by well defined system calls. In Linux,
+some parts of the task\_struct like the heap, stack, and global variables are
+accessible in user space, but other information like the task state is only
+accessible in kernel space. 
 \\
 \linebreak
 Both Linux and Windows provide support for background processes. In Windows,
