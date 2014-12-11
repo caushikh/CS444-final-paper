@@ -281,7 +281,14 @@ Both Windows and Linux support copy-on-write paging. When an attempt is made
 to modify pages that start out originally as read-only pages, the memory 
 manager makes a private writable copy of the page and updates the page table 
 to reference the new private page. The new page will then be paged out rather
-than the original page.
+than the original page. This is also called lazy evaluation. The actual copy
+of a page will only be made by when there is an attempt to modify it. In 
+Linux, one of the main ways in which copy-on-write is used is when making the
+fork() system call. The process address space is not copied straight away 
+because often a call to exec() is called soon after and the process address
+space would have to be changed again. Instead, copy-on-write defers the 
+copying of the address space until a change to the address space is actually 
+attempted.
 \subsection{Differences}
 In Windows, all user processes share the kernel's virtual memory. This is only 
 accessible when running in kernel mode, but eliminates the need to change the
@@ -314,9 +321,9 @@ These are the Page Directory and the Page Tables.
 \subsection{Why Similarities and Differences Exist?}
 Both Windows and Linux provide a virtual address space for its processes
 because they are a useful abstraction for any sort of operating system 
-design. Every process can have its own private memory and not have to worry
-about having to manage where to allocate memory. Both can swap out memory 
-when they need to free up memory for other processes. It is a fundamental
+design. Every process can have its own private memory and relieves application
+programs from the need to manage physical memory. Each process can swap out
+memory when it needs to free up memory for other processes. It is a fundamental
 abstraction that is useful for all operating systems.
 \\
 \linebreak
