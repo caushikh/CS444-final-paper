@@ -254,6 +254,18 @@ because the dispatcher, or scheduler, is more complex. Threads are more
 lightweight in Windows and thus their can be many more threads that are 
 created at any point in time. More threads to manage naturally leads to
 more schedulable states and more complex scheduling algorithms. 
+\\
+\linebreak
+Jobs exist in Windows in order to constrain the threads they create in 
+certain ways. For example, they can be used to control access to a certain
+resource or prevent threads from accessing too many system objects. Because
+a process is part of a job, all threads that are created from that process
+will also be in that job and can be controlled collectively. Fibers exist
+to provide an execution unit that can be scheduled and run without the
+overhead of threads. Linux does not want all these different execution
+units or execution managers because the main design goal is simplicity. 
+It wants as few execution units as possible and keep life simple for 
+application programs.
 \section{Memory Management}
 \subsection{Similarities}
 In both Linux and Windows, every process has its own virtual address space.
