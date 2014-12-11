@@ -79,7 +79,7 @@ Executive Process Block of each process contains a Process Environment Block
 that is accessible in user space~\cite{rsw6}. It includes information about the executable
 image, process heap, and thread storage. The task\_struct also contains 
 information accessible in user space like the heap, stack, and global
-variables~\cite{love:linux3}.
+variables~\cite{love3}.
 \\
 \linebreak
 Both Linux and Windows implement user mode and kernel mode. In both operating
@@ -89,49 +89,49 @@ mode stack and kernel mode program counter for execution in kernel mode. These
 are saved and restarted when switching from kernel mode to user mode and vice
 versa. The Windows process address space includes a process environment block
 and thread environment block that includes information that is accessible in
-user mode. This includes the information described above in the previous
+user mode~\cite{rsw6}. This includes the information described above in the previous
 paragraph. The actual process executive block itself is only accessible in 
 kernel mode and can only be manipulated by well defined system calls. In Linux,
 some parts of the task\_struct like the heap, stack, and global variables are
 accessible in user space, but other information like the task state is only
-accessible in kernel space. 
+accessible in kernel space~\cite{tm10}. 
 \\
 \linebreak
 Both Linux and Windows provide support for background processes. In Windows,
 these are called Windows Services and are managed by the Service Control 
-Manager. In Linux, background processes are called daemons and are created 
+Manager~\cite{msdn-serv}. In Linux, background processes are called daemons and are created 
 when a process is forked and its parent terminates. The new process then calls
-setsid() to free itself from the controlling terminal. Windows Services and 
+setsid() to free itself from the controlling terminal~\cite{tlpi37}. Windows Services and 
 daemons are both usually created at system startup. Background processes in
 Windows and Linux usually are usually long-lived and run until the system 
 is shut down. They usually carry out specific tasks like sshd and httpd, the
 two Linux daemons that manage logins from remote hosts using the ssh protocol
-and serve web pages respectively. An example of a Windows Services is 
+and serve web pages respectively~\cite{tlpi37}. An example of a Windows Services is 
 the plug and play manager that automatically recognizes devices and installs
-the necessary driver software.
+the necessary driver software~\cite{rsw6}.
 \\
 \linebreak
 Both operating systems provide support for threads that only run in kernel 
 context. In Linux, these are known as kernel threads. In Windows, these are 
 known as system threads. System threads can be created with the system call
-PsCreateSystemThread. Linux kernel threads are usually created at system 
+PsCreateSystemThread~\cite{tm11}. Linux kernel threads are usually created at system 
 startup. In Linux, these threads are not represented by a separate task\_struct
 and do not have a separate process context. Likewise, in Windows, these
-System threads do not have a Thread Environment Block (TEB). They lack a user
+System threads do not have a Thread Environment Block (TEB)~\cite{rsw6}. They lack a user
 process address space. In Windows, kernel mode system threads are often 
 created at system startup to perform operations like writing dirty pages to
-page files or swapping processes in and out of memory. In Linux, kernel 
+page files or swapping processes in and out of memory~\cite{tm11}. In Linux, kernel 
 threads execute tasks like pdflush to write dirty pages to page files and 
-ksoftirqd to handle soft interrupts.
+ksoftirqd to handle soft interrupts~\cite{love3}.
 \subsection{Differences}
 
 One fundamental difference between Linux and Windows is in process creation. 
 In Linux, new processes are created by invoking two different system calls:
 fork(), to create a duplicate of the current process, and exec(), to load an
-executable file into the new process's address space and then execute it. 
+executable file into the new process's address space and then execute it~\cite{tm10}. 
 In Windows, a call to one of the process creation functions like CreateProcess
 loads an executable image file, or an .exe file, and creates the Windows
-executive process object all in one. In Linux, this allows a forked process
+executive process object all in one~\cite{msdn-cp}. In Linux, this allows a forked process
 to do some work before it loads a new executable image. In Windows, one can
 duplicate a process by specifying the executable module argument in 
 CreateProcess as NULL. 
