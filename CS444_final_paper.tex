@@ -273,11 +273,11 @@ In Windows, the process's virtual address space is managed by a component
 of the operating system called the memory manager~\cite{rsw7}. The subset of a process's
 virtual address space in Windows that is in memory is called a working set~\cite{tm11}.
 In both Linux and Windows, the virtual address space provided to a process
-can be larger than the amount of physical memory available~\cite{12}. Thus, both 
+can be larger than the amount of physical memory available~\cite{msdn-mem}. Thus, both 
 operating systems make use of paging to provide this illusion.
 \\
 \linebreak
-Both Windows and Linux support copy-on-write paging. When an attempt is made
+Both Windows and Linux support copy-on-write paging~\cite{love12}. When an attempt is made
 to modify pages that start out originally as read-only pages, the memory 
 manager makes a private writable copy of the page and updates the page table 
 to reference the new private page. The new page will then be paged out rather
