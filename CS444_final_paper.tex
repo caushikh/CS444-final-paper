@@ -300,6 +300,18 @@ memory mapped file as a shared memory object that other processes can attach
 to their address space~\cite{tm10}.
 \\
 \linebreak
+Here is an example of how Linux implements shared memory objects. Notice that 
+the memory segment must be declared with shm\_open to be mapped as a shared
+memory object that is accessible to multiple processes.
+
+\input{__mmapeg.c.tex}
+
+Here is the corresponding example for Windows. Notice how one process simply
+needs to create a memory mapped file for shared memory. There is no special 
+need to declare it as a shared memory object as in Linux.
+
+\input{__winmemeg.c.tex}
+
 Windows and Linux processes have different amounts of their virtual address
 space dedicated to kernel virtual memory. Windows dedicates 2 GB of each 4 GB
 process address space for kernel virtual memory~\cite{tm11}. Linux dedicates 1 GB of each
