@@ -361,72 +361,72 @@ virtual memory so it requires four levels.
 \subsection{Similarities}
 Both Windows and Linux offer a number of similar system calls for I/O like 
 open, read, write, ioctl, and close. Both operating systems view devices as 
-files and control access to devices with basic file system functions. In 
-Linux, these are open(), read(), write(), ioctl(), and close(). In Windows, 
+files and control access to devices with basic file system functions~\cite{msdn-io}. In 
+Linux, these are open(), read(), write(), ioctl(), and close()~\cite{love14}. In Windows, 
 I/O request packets (IRP) are created and then passed to the I/O subsystem. 
 The IRPs specify the operations to be performed and that correspond to the 
-I/O manager. These include CREATE, READ, WRITE, IOCTL, and CLOSE.
+I/O manager. These include CREATE, READ, WRITE, IOCTL, and CLOSE~\cite{tm11}.
 \\
 \linebreak
 Both Windows and Linux provide support for asynchronous I/O. It is a method of
 allowing a process to continue execution after it submits an I/O request to 
 not block until data becomes available. Linux provides this functionality 
 through its AIO system calls like io\_setup, io\_destroy, io\_submit,
-io\_cancel, and io\_getevents. Windows provides this functionality in a number
+io\_cancel, and io\_getevents~\cite{aio}. Windows provides this functionality in a number
 of ways and offers a number of options to implement it. Examples include 
 creating an event object when making an I/O call and waiting on it at a later 
 point in time, and specifying a queue to which a completion event will be 
-added by the I/O manager.
+added by the I/O manager~\cite{tm11}.
 \\
 \linebreak
-Both operating systems provide support for stacked device drivers. In Linux
-they are called stacked modules. The idea is that drivers share certain 
+Both operating systems provide support for stacked device drivers~\cite{tm11}. In Linux
+they are called stacked modules~\cite{tm10}. The idea is that drivers share certain 
 functionalities and that multiple other drivers can be executed before 
 executing the core functionality of a particular driver. Windows makes heavy 
 use of this. I/O requests can pass through a number of drivers that each take 
-care of a part of the driver's work. A common use of this is the separation of
+care of a part of the driver's work~\cite{tm11}. A common use of this is the separation of
 bus management from the management of the actual device. A new device can 
 thus just use the standard bus driver and only need to write its device 
-specific driver functionality.
+specific driver functionality~\cite{rsw9}.
 \\
 \linebreak
 Hibernation, or suspending to disk, is supported by both Linux and Windows.
 It involves saving the computer's state to the disk and then powering down to
 save power. Windows performs a number of optimizations like compression of 
-memory pages and ignoring unmodified pages backed by disk. in addition to 
+memory pages and ignoring unmodified pages backed by disk~\cite{tm11}. In addition to 
 reducing power consumption by techniques such as shutting off the display or 
 stopping disk drives from spinning, Windows allows for devices not in use 
 to save power by entering sleep states. It also provides optimizations
-to avoid a full system boot when exiting its sleep state.
+to avoid a full system boot when exiting its sleep state~\cite{tm11}.
 \\
 \linebreak
 Both Windows and Linux support dynamically loadable modules. In Windows, these
 modules are called dynamically linked libraries, or DLL's. In Linux, the 
 modules are called shared objects or .so files. They allow for functions and 
-data to be linked at runtime. Export drivers are kernel mode DLLs that 
+data to be linked at runtime~\cite{link}. Export drivers are kernel mode DLLs that 
 provide routines that other drivers can call. They are not standard drivers
 as they are not part of the driver stack and do not receive I/O request 
-packets.
+packets~\cite{rsw9}.
 \\
 \linebreak
 Both Windows and Linux have a uniform device access interface for their 
 device drivers. In Windows, this is called the Windows Driver Model (WDM) 
-that all device drivers must conform to. This exists so that application 
+that all device drivers must conform to~\cite{rsw9}. This exists so that application 
 programs can access devices in a uniform way without having to worry about
 the details of the device implementation. All WDM drivers have to support 
 plug and play and support power management. Windows also requires that 
 WDM drivers to potentially be used in device driver stacks by creating 
-device objects. They are written with the Windows Driver Kit (WDK).
+device objects. They are written with the Windows Driver Kit (WDK)~\cite{msdn-wdm}.
 \subsection{Differences}
 Windows offers support for a plug and play I/O subsystem while Linux does not.
 The plug-and-play is a feature that provides automatic identification of 
-devices and installation of device drivers. It sends requests to a number of
-different buses like PCI, USB, and SATA to register its devices. Hardware 
+devices and installation of device drivers~\cite{msdn-pnp}. It sends requests to a number of
+different buses like PCI, USB, and SATA to register its devices~\cite{msdn-pnp}. Hardware 
 resources are then allocated for the device. This allows to support many more
 devices than Linux. In addition to the installation of the current device, 
 it also involves the loading of other drivers in the device driver stack
 and provides an interface for drivers and applications to specify what 
-actions to take when there are certain changes to the hardware environment.
+actions to take when there are certain changes to the hardware environment~\cite{tm11}.
 Plug and Play is implemented with a Plug and Play manager that exists in 
 kernel mode.
 \\
@@ -435,14 +435,14 @@ DLLs and .so files are very different in the way that they link dynamic
 modules. When .so files are linked to a program, the references to all the 
 module's functions and data are updated to point to the actual locations in 
 memory where they are placed. DLLs use a look-up table to map references to 
-the module's functions and data.
+the module's functions and data~\cite{link}.
 \subsection{Why Similarities and Differences Exist?}
 Both Windows and Linux offer basic filesystem calls for devices because most 
-devices are block devices that allow random access of different sectors. 
+devices are block devices that allow random access of different sectors~\cite{love14}. 
 The basic filesystem calls manipulate blocks of data and can thus be used 
 without many changes for other devices as well. Providing a uniform interface
 that all device drivers must implement greatly simplifies driver development
-and allows for the use of many devices. Both Windows and Linux take advantage
+and allows for the use of many devices~\cite{msdn-io}. Both Windows and Linux take advantage
 of this abstraction for this reason. 
 \\
 \linebreak
